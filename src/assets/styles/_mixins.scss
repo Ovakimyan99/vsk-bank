@@ -1,0 +1,12 @@
+@use './colors';
+
+@mixin bgGradient($rad: 272deg) {
+  background: linear-gradient($rad, colors.$textAccentDark 6.2%, colors.$textAccent 92.59%);
+}
+
+@mixin setFontParams($weight: 400, $fontSize: 18px) {
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $fontSize;
+  line-height: 1.2;
+}

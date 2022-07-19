@@ -1,0 +1,32 @@
+{
+  "pages": [
+    {
+      "id": "1",
+      "title": "Страхование грузов",
+      "descr": "Страхование любых видов грузов от непредвиденных обстоятельств",
+      "file": "https://apivsk.bexram.online/media/content/files/Грузы_-_заявление_на_страхование.docx",
+      "imgSrc": "cargo-insurance.png"
+    },
+    {
+      "id": "2",
+      "title": "Страхование кибер-рисков",
+      "descr": "Комплексная защита Вашего бизнеса от любыхвидов кибератак",
+      "file": "https://apivsk.bexram.online/media/content/files/Кибер_риски_Заявление_на_страхование.docx",
+      "imgSrc": "cyber-insurance.png"
+    },
+    {
+      "id": "3",
+      "title": "Страхование cmp",
+      "descr": "Комплексное страхование строительно-монтажных рисков",
+      "file": "https://apivsk.bexram.online/media/content/files/СМР_-_Заявление_на_страхование.DOCX",
+      "imgSrc": "cmp.png"
+    },
+    {
+      "id": "4",
+      "title": "Каско",
+      "descr": "Максимальная защита парков автомобилей для корпоративных клиентов",
+      "file": "https://apivsk.bexram.online/media/content/files/КАСКО_-_заявление_на_страхование.xlsx",
+      "imgSrc": "casco.png"
+    }
+  ]
+}
