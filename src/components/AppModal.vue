@@ -21,7 +21,6 @@
       <form class="modal-form">
         <slot name="form" />
       </form>
-
       <!--  Send Form  -->
       <app-button
         @click="send"
@@ -69,6 +68,9 @@ export default {
       this.showModal = false
       this.$options.modalController.resolve(false)
     }
+  },
+  beforeUnmount() {
+    this.close()
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <input
+    v-bind="$attrs"
     v-if="format === $options.formTypes.input"
     :value="modelValue"
     :placeholder="setPlaceholder"
@@ -10,10 +11,10 @@
   >
   <div
     v-else-if="format === $options.formTypes.choice"
-    @click="showSelect = !showSelect"
-    style="position: relative"
+    class="custom-input-choice-title"
   >
     <div
+      @click="showSelect = !showSelect"
       class="custom-input"
       :class="{error}"
       :style="{
@@ -29,7 +30,6 @@
     >
       <template v-for="(value, idx) of valuesList" :key="value">
         <div
-          @click="showSelect = !showSelect"
           class="custom-input-select__group">
           <input
             class="custom-input-select__input"
@@ -37,12 +37,14 @@
             :id="placeholder + idx"
             :value="value"
             v-model="choiceValue"
-            @change="$emit('update:modelValue', value)"
+            @change="selectListItem(value)"
           />
           <label
             class="custom-input-select__label"
             :for="placeholder + idx"
-          >{{ value }}</label>
+          >
+            {{ value }}
+          </label>
         </div>
       </template>
     </div>
@@ -100,6 +102,12 @@ export default {
     setPlaceholder() {
       return `${this.placeholder}${this.required && this.format === this.$options.formTypes.input ? '*' : ''}`
     }
+  },
+  methods: {
+    selectListItem(value) {
+      this.showSelect = !this.showSelect
+      this.$emit('update:modelValue', value)
+    }
   }
 }
 </script>
@@ -118,6 +126,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &-choice-title {
+    position: relative;
+  }
 
   &__arrow {
     width: 8px;

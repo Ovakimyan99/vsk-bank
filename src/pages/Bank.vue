@@ -127,7 +127,6 @@
       <div class="form-field">
         <form-custom-input
           :format="$options.formTypes.input"
-          :error="v$.linkToPurchase.$error"
           placeholder="Ссылка на закупку"
           :modelValue="linkToPurchase"
           @update:modelValue="v => linkToPurchase = v"
@@ -168,11 +167,13 @@
       <div class="form-field">
         <form-custom-input
           :format="$options.formTypes.input"
-          required
           :error="v$.warrantyPeriod.$error"
-          placeholder="Срок гарантий"
           :modelValue="warrantyPeriod"
+          v-imask="maskDate"
+          required
           @update:modelValue="v => warrantyPeriod = v"
+          @accept="onAccept"
+          placeholder="Срок гарантий"
         />
       </div>
       <div class="form-field">
@@ -188,11 +189,13 @@
       <div class="form-field">
         <form-custom-input
           :format="$options.formTypes.input"
-          required
           :error="v$.tel.$error"
-          placeholder="Телефон"
           :modelValue="tel"
+          v-imask="maskTelephone"
+          required
+          placeholder="Телефон"
           @update:modelValue="v => tel = v"
+          @accept="onAccept"
         />
       </div>
       <div class="form-field">
@@ -221,10 +224,11 @@ import InsuranceInfo from '@/components/InsuranceInfo'
 import InsuranceInfoList from '@/components/InsuranceInfoList'
 import SelectionPoint from '@/components/SelectionPoint'
 import FormCustomInput from '@/components/FormCustomInput'
-import { email, required, numeric } from '@vuelidate/validators'
+import { email, required, numeric, alpha } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core/dist/index.esm'
 import { FORM_TYPE_CHOICE, FORM_TYPE_INPUT } from '@/consts'
 import sendForm from '@/sendForm'
+import {IMask, IMaskDirective} from "vue-imask";
 
 export default {
   name: 'AppBank',
@@ -240,6 +244,9 @@ export default {
     InsuranceInfoList,
     SelectionPoint,
     FormCustomInput
+  },
+  directives: {
+    imask: IMaskDirective
   },
   formTypes: {
     input: FORM_TYPE_INPUT,
@@ -279,7 +286,23 @@ export default {
       warrantyPeriod: '',
       name: '',
       tel: '',
-      email: ''
+      email: '',
+
+      maskTelephone: {
+        mask: '+{7}(000)000-00-00',
+        lazy: true,
+        placeholderChar: '_'
+      },
+      maskDate: {
+        mask: Date,
+        lazy: true,
+        autofix: true,
+        blocks: {
+          d: {mask: IMask.MaskedRange, placeholderChar: 'd', from: 1, to: 31, maxLength: 2},
+          m: {mask: IMask.MaskedRange, placeholderChar: 'm', from: 1, to: 12, maxLength: 2},
+          Y: {mask: IMask.MaskedRange, placeholderChar: 'y', from: 1900, to: 2999, maxLength: 4}
+        }
+      }
     }
   },
   methods: {
@@ -325,24 +348,27 @@ export default {
       this.name = ''
       this.tel = ''
       this.email = ''
-    }
+    },
+    onAccept (e) {
+      const maskRef = e.detail;
+      this.value = maskRef.value;
+    },
   },
   validations () {
     return {
-      principal: { required },
+      principal: { required, alpha },
       innPrincipal: { required, numeric },
-      beneficiary: { required },
+      beneficiary: { required, alpha },
       innBeneficiary: { required, numeric },
-      linkToPurchase: {},
       typesOfContracts: {
         picked: { required }
       },
       garantiesOfTypes: {
         picked: { required }
       },
-      termGuarantee: { required, numeric },
+      termGuarantee: { required },
       warrantyPeriod: { required },
-      name: { required },
+      name: { required, alpha },
       tel: { required },
       email: { required, email }
     }
