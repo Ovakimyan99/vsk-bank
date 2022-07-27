@@ -1,8 +1,6 @@
 <template>
   <header class="header">
-    <slot name="image">
-      <img class="header-logo" src="@/assets/image/vsk-logo.png" alt="страховой дом VSK" title="страховой дом VSK">
-    </slot>
+    <img class="header-logo" src="@/assets/image/vsk-logo.png" alt="страховой дом VSK" title="страховой дом VSK">
     <div @click="burgerActive = !burgerActive" class="header-burger" :class="{active: burgerActive}">
       <div class="header-burger-line header-burger-top" />
       <div class="header-burger-line header-burger-middle" />

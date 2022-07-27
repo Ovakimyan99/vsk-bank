@@ -1,8 +1,8 @@
 <template>
   <header class="header">
-    <slot name="image">
+    <a class="header-logo-link" href="https://vskcorp.ru">
       <img class="header-logo" src="@/assets/image/vsk-logo.png" alt="страховой дом VSK" title="страховой дом VSK">
-    </slot>
+    </a>
     <div @click="burgerActive = !burgerActive" class="header-burger" :class="{active: burgerActive}">
       <div class="header-burger-line header-burger-top" />
       <div class="header-burger-line header-burger-middle" />
@@ -17,7 +17,9 @@
             :key="name"
             :to="`/#${path}`"
           >
-            {{ name }}
+            <a class="header-links__route-link" href="https://vskcorp.ru">
+              {{ name }}
+            </a>
           </li>
         </ul>
       </nav>
@@ -213,20 +215,28 @@ export default {
 
     &__route {
       cursor: pointer;
-      @include mixins.setFontParams(400, 18px);
 
       &:not(:first-child) {
         margin-left: 28px;
+      }
+
+      &-link {
+        @include mixins.setFontParams(400, 18px);
+        text-decoration: none;
+        color: colors.$textDark;
       }
     }
 
     &.active &__route {
       margin: 0;
-      color: colors.$textDark;
-      @include mixins.setFontParams(500, 26px);
       text-align: right;
       display: inline-block;
-      padding-right: 30px;
+
+      &-link {
+        @include mixins.setFontParams(500, 26px);
+        padding-right: 30px;
+        color: colors.$textDark;
+      }
 
       &:not(:last-child) {
         margin-bottom: 52px;

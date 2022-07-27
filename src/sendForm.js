@@ -8,7 +8,7 @@ export default function(str) {
       body: JSON.stringify({
         title: 'Новый клиент',
         text: str,
-        recipient: 'tigr.kman@gmail.com'
+        recipient: 'garantiya@vsk.ru'
       }),
       headers: {
         'Content-Type': 'application/json'

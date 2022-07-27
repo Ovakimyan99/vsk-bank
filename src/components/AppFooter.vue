@@ -20,10 +20,15 @@
         <!--   Нагация по странице   -->
         <nav class="footer-navigate">
           <ul class="footer-navigate-list">
-            <li class="footer-navigate__item">Страховые продукты</li>
-            <li class="footer-navigate__item">О нас</li>
-            <li class="footer-navigate__item">Партнеры</li>
-            <li class="footer-navigate__item">Контакты</li>
+            <li
+              v-for="{name, link} of footerNavigate"
+              :key="name"
+              class="footer-navigate__item"
+            >
+              <a :href="link" class="footer-navigate__item-link">
+                {{ name }}
+              </a>
+            </li>
           </ul>
         </nav>
         <!--    Social Icons      -->
@@ -68,20 +73,38 @@ export default {
     return {
       socialLinks: [
         {
-          src: 'https://zooblog.ru/wp-content/uploads/2021/01/joshua-j-cotten-uffvghtoqhc-unsplash.jpg',
+          src: 'https://www.youtube.com/user/vsktv/videos',
           img: 'YouTube.png'
         },
         {
-          src: 'https://zooblog.ru/wp-content/uploads/2021/01/joshua-j-cotten-uffvghtoqhc-unsplash.jpg',
+          src: 'https://vk.com/vsk.insurance',
           img: 'vk.png'
         },
         {
-          src: 'https://zooblog.ru/wp-content/uploads/2021/01/joshua-j-cotten-uffvghtoqhc-unsplash.jpg',
+          src: 'https://t.me/vskinsur',
           img: 'tg.png'
         },
         {
-          src: 'https://zooblog.ru/wp-content/uploads/2021/01/joshua-j-cotten-uffvghtoqhc-unsplash.jpg',
+          src: 'https://ok.ru/vskinsurance',
           img: 'classmates.png'
+        }
+      ],
+      footerNavigate: [
+        {
+          name: 'Страховые продукты',
+          link: 'https://vskcorp.ru'
+        },
+        {
+          name: 'О нас',
+          link: 'https://vskcorp.ru'
+        },
+        {
+          name: 'Партнеры',
+          link: 'https://vskcorp.ru'
+        },
+        {
+          name: 'Контакты',
+          link: 'https://vskcorp.ru'
         }
       ]
     }
@@ -190,7 +213,11 @@ export default {
 
     &__item {
       cursor: pointer;
-      @include mixins.setFontParams(400, 18px);
+      &-link {
+        @include mixins.setFontParams(400, 18px);
+        text-decoration: none;
+        color: colors.$textWhite;
+      }
 
       &:not(:last-child) {
         margin-bottom: 15px;

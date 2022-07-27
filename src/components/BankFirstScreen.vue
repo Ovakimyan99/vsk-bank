@@ -86,6 +86,7 @@ export default {
 
   &-procurement {
     margin-top: 50px;
+    cursor: default !important;
     font-size: 21px !important;
 
     @media (min-width: 560px) {
