@@ -5,7 +5,7 @@
       <slot name="header" />
       <h2 class="insurance-products__title">
         <slot name="title" />
-        <!--        <span class="insurance-products__descr">для участников<br>госсзаказа</span>-->
+        <span class="insurance-products__descr">для участников<br>госсзаказа</span>
       </h2>
       <app-button v-if="slotBtn" class="insurance-products-procurement">
         <slot name="subtitle" />

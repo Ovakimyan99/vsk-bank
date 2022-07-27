@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     component: PageBank,
-    name: 'HomeAppBank'
+    name: 'AppBank'
   },
   {
     path: '/:pathMatch(.*)*',
