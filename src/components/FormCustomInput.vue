@@ -21,7 +21,7 @@
         'z-index': showSelect ? 7 : 1
       }"
     >
-      {{ setPlaceholder }}
+      <span class="custom-input-choice">{{ setPlaceholder }} {{ choiceValue ? `- ${choiceValue}` : '' }}</span>
       <indicator-arrow class="custom-input__arrow" :rotate="showSelect" />
     </div>
     <div
@@ -100,7 +100,7 @@ export default {
   },
   computed: {
     setPlaceholder() {
-      return `${this.placeholder}${this.required && this.format === this.$options.formTypes.input ? '*' : ''}`
+      return `${this.placeholder}${this.required ? '*' : ''}`
     }
   },
   methods: {
@@ -126,6 +126,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-overflow: ellipsis;
+
+  &-choice {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   &-choice-title {
     position: relative;
@@ -134,6 +141,7 @@ export default {
   &__arrow {
     width: 8px;
     height: 8px;
+    min-width: 8px;
 
     &:after {
       border-color: colors.$textAccentDark;

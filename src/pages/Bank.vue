@@ -86,81 +86,80 @@
       <!--   FormInputsList   -->
       <div class="form-field">
         <form-custom-input
-          :format="$options.formTypes.input"
           required
-          placeholder="Принципал"
+          :format="$options.formTypes.input"
           :modelValue="principal"
           :error="v$.principal.$error"
+          placeholder="Принципал"
           @update:modelValue="v => principal = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
-          :format="$options.formTypes.input"
           required
+          :format="$options.formTypes.input"
           :error="v$.innPrincipal.$error"
-          placeholder="ИНН принципала"
           :modelValue="innPrincipal"
+          placeholder="ИНН принципала"
           @update:modelValue="v => innPrincipal = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
           :format="$options.formTypes.input"
-          required
           :error="v$.beneficiary.$error"
-          placeholder="Бенефициар"
           :modelValue="beneficiary"
+          placeholder="Бенефициар"
           @update:modelValue="v => beneficiary = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
           :format="$options.formTypes.input"
-          required
           :error="v$.innBeneficiary.$error"
-          placeholder="ИНН бенефициара"
           :modelValue="innBeneficiary"
+          placeholder="ИНН бенефициара"
           @update:modelValue="v => innBeneficiary = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
+          required
           :format="$options.formTypes.input"
-          placeholder="Ссылка на закупку"
+          :error="v$.linkToPurchase.$error"
           :modelValue="linkToPurchase"
+          placeholder="Ссылка на закупку / № лота"
           @update:modelValue="v => linkToPurchase = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
-          :format="$options.formTypes.choice"
           required
+          :format="$options.formTypes.choice"
           :error="v$.typesOfContracts.picked.$error"
-          placeholder="Вид контрактов"
           :valuesList="typesOfContracts.values"
           :modelValue="typesOfContracts.picked"
+          placeholder="Вид контрактов"
           @update:modelValue="v => typesOfContracts.picked = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
-          :format="$options.formTypes.choice"
           required
+          :format="$options.formTypes.choice"
           :error="v$.garantiesOfTypes.picked.$error"
-          placeholder="Тип гарантий"
           :valuesList="garantiesOfTypes.values"
           :modelValue="garantiesOfTypes.picked"
+          placeholder="Тип гарантий"
           @update:modelValue="v => garantiesOfTypes.picked = v"
         />
       </div>
       <div class="form-field">
         <form-custom-input
           :format="$options.formTypes.input"
-          required
           :error="v$.termGuarantee.$error"
-          placeholder="Сумма гарантий"
           :modelValue="termGuarantee"
+          placeholder="Сумма гарантий"
           @update:modelValue="v => termGuarantee = v"
         />
       </div>
@@ -170,29 +169,28 @@
           :error="v$.warrantyPeriod.$error"
           :modelValue="warrantyPeriod"
           v-imask="maskDate"
-          required
+          placeholder="Срок гарантий"
           @update:modelValue="v => warrantyPeriod = v"
           @accept="onAccept"
-          placeholder="Срок гарантий"
         />
       </div>
       <div class="form-field">
         <form-custom-input
-          :format="$options.formTypes.input"
           required
+          :format="$options.formTypes.input"
           :error="v$.name.$error"
-          placeholder="Имя"
           :modelValue="name"
           @update:modelValue="v => name = v"
+          placeholder="Имя"
         />
       </div>
       <div class="form-field">
         <form-custom-input
+          required
           :format="$options.formTypes.input"
           :error="v$.tel.$error"
           :modelValue="tel"
           v-imask="maskTelephone"
-          required
           placeholder="Телефон"
           @update:modelValue="v => tel = v"
           @accept="onAccept"
@@ -200,11 +198,11 @@
       </div>
       <div class="form-field">
         <form-custom-input
-          :format="$options.formTypes.input"
           required
+          :format="$options.formTypes.input"
+          :modelValue="email"
           :error="v$.email.$error"
           placeholder="Почта"
-          :modelValue="email"
           @update:modelValue="v => email = v"
         />
       </div>
@@ -358,16 +356,17 @@ export default {
     return {
       principal: { required, alpha },
       innPrincipal: { required, numeric },
-      beneficiary: { required, alpha },
-      innBeneficiary: { required, numeric },
+      beneficiary: { alpha },
+      innBeneficiary: { numeric },
       typesOfContracts: {
         picked: { required }
       },
       garantiesOfTypes: {
         picked: { required }
       },
-      termGuarantee: { required },
-      warrantyPeriod: { required },
+      linkToPurchase: { required },
+      termGuarantee: {},
+      warrantyPeriod: {},
       name: { required, alpha },
       tel: { required },
       email: { required, email }

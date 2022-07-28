@@ -6,7 +6,7 @@ export default function(str) {
     return fetch(url.href, {
       method: 'POST',
       body: JSON.stringify({
-        title: 'Новый клиент',
+        title: 'Bank Guarantees; Новый клиент',
         text: str,
         recipient: 'garantiya@vsk.ru'
       }),
